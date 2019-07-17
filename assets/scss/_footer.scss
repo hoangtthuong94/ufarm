@@ -1,0 +1,55 @@
+@import "variables";
+@import "mixin";
+
+.footer {
+  border-top: 3px solid $gray-1;
+
+  .col-md-4 {
+    padding-top: 20px;
+  }
+
+  .logo-footer {
+    display: block;
+    width: 120px;
+    height: 100px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    background-image: url("../../static/images/ustorelogo01.png");
+  }
+
+  .sub-title {
+    color: $pink-gray;
+    font-size: 17px;
+    margin-bottom: 20px;
+  }
+
+  .list-social {
+    margin: 15px 0;
+
+    a {
+      display: inline-block;
+      margin-right: 10px;
+      color: $yellow;
+      font-size: 28px;
+    }
+  }
+
+  .contact {
+    > div {
+      margin-bottom: 5px;
+    }
+
+    i {
+      color: $yellow;
+      margin-right: 5px;
+      width: 15px;
+    }
+  }
+
+  .bottom {
+    border-top: 1px solid $gray-1;
+    padding: 15px 0;
+    color: $footer-bottom-color;
+  }
+}

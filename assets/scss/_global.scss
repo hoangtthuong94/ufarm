@@ -1,0 +1,107 @@
+@import "variables";
+
+body {
+  font-family: 'Open Sans', serif;
+  font-weight: normal;
+  font-style: normal;
+  font-size: 14px;
+  line-height: 1.7;
+  color: $word-main-color;
+}
+
+a {
+  color: $word-pink-gray-color;
+
+  &:hover {
+    text-decoration: none;
+    opacity: 0.9;
+    color: $word-pink-gray-color;
+
+  }
+}
+
+h1, h2, h3, h4, h5 {
+  color: $bold-color;
+  font-weight: bolder;
+}
+
+h1 {
+  font-size: 30px;
+}
+
+h2 {
+  font-size: 28px;
+}
+
+h5{
+  font-size: 17px;
+}
+
+.btn {
+  border-radius: 3px;
+  cursor: pointer;
+  position: relative;
+  text-decoration: none;
+  overflow: visible;
+  padding: 5px 15px;
+  font-weight: 700;
+  display: inline-block;
+  background-image: none;
+  box-shadow: none;
+  text-shadow: none;
+  font-size: 14px;
+
+  &-pink-gray {
+    color: $white;
+    background-color: $pink-gray;
+    border-color: $pink-gray;
+
+    &:hover {
+      color: $white;
+      background-color: $btn-primary-hover;
+      border-color: $btn-primary-hover;
+    }
+  }
+
+  &-warning{
+    color: $white;
+    background-color: $yellow;
+    border-color: $yellow;
+
+    &:hover {
+      color: $white;
+      background-color: $yellow;
+      border-color: $yellow;
+      opacity: 0.8;
+    }
+  }
+}
+
+.btn-gray-transparent {
+  border: 1px solid $gray;
+  color: $btn-gray-color;
+  background-color: transparent;
+
+  &:hover {
+    background-color: $btn-gray-background-hover;
+    color: $btn-gray-color;
+  }
+}
+
+.btn-black {
+  border: 1px solid $btn-black-border;
+  color: $white;
+  background-color: $btn-black-background;
+
+  &:hover {
+    background-color: $btn-black-hover;
+    border-color: $btn-black-hover;
+    color: $white;
+  }
+}
+
+//style form validate
+.invalid-feedback, .valid-feedback {
+  display: block;
+}
+
