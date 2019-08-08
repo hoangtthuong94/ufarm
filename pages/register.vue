@@ -2,26 +2,55 @@
   <div class="container login">
     <div class="row">
       <div class="col-md-9">
-        <h1>Login</h1>
+        <h1>Register</h1>
         <div class="links text-danger" v-if="errorMessage">{{ errorMessage }}</div>
         <form class="form form-border" @submit="onSubmit">
           <app-form-input
               :required="true"
+              :type="'email'"
+              :label="'Email address'"
+              :placeholder="'Email address'"
+              name="email"
+              v-model="register.email"/>
+
+          <app-form-input
+              :required="true"
               :type="'text'"
-              :label="'Username or email address'"
-              :placeholder="'Username or email address'"
-              v-model="loginData.email"/>
+              :label="'First name'"
+              :placeholder="'First name'"
+              name="firstName"
+              v-model="register.firstName"/>
+
+          <app-form-input
+              :required="true"
+              :type="'text'"
+              :label="'Last name'"
+              :placeholder="'Last name'"
+              name="lastName"
+              v-model="register.lastName"/>
 
           <app-form-input
               :required="true"
               :type="'password'"
               :label="'Password'"
               :placeholder="'Password'"
-              v-model="loginData.password"/>
+              name="password"
+              v-model="register.password"/>
 
-          <button class="btn btn-pink-gray mb-2 mt-1">Login</button>
+          <app-form-input
+              :required="true"
+              :type="'password'"
+              :label="'Password Confirm'"
+              :placeholder="'Password'"
+              :pattern="register.password"
+              name="passwordConfirm"
+              v-model="register.passwordConfirm"/>
+
+          <button class="btn btn-pink-gray mb-2 mt-1" :disabled="!isValidForm">Register</button>
           <br/>
-          <router-link to="request-new-password" class="btn-login">Lost your password ?</router-link>
+          {{!!((this.register.email && this.register.password) && (this.register.password ===
+          this.register.passwordConfirm))}}
+          <router-link to="request-new-password" class="btn-login">Login ?</router-link>
         </form>
       </div>
       <div class="col-md-3">
@@ -41,32 +70,41 @@
   import AppFormTextarea from '../components/AppFormTextarea';
 
   export default {
-    name: 'login',
+    name: 'register',
     components: {AppFormTextarea, AppFormSelect, AppFormCheckbox, AppFormInput},
     data() {
       return {
         errorMessage: '',
-        loginData: {
+        register: {
           email: '',
+          firstName: '',
+          lastName: '',
           password: '',
+          passwordConfirm: '',
         }
       }
     },
     computed: {
       isValidForm: function () {
-        return !!(this.loginData.email && this.loginData.password);
+        return !!((this.register.email && this.register.password) && (this.register.password === this.register.passwordConfirm));
       }
     },
     methods: {
       onSubmit(event) {
         event.preventDefault();
-        console.log('submit nef');
         if (!this.isValidForm) {
           return;
         }
 
         this.errorMessage = '';
 
+        console.log('submit nef', this.register);
+        const data = this.$store.dispatch('oauth/register', {
+          email: this.register.email,
+          password: this.register.password,
+          firstName: this.register.firstName,
+          lastName: this.register.lastName
+        })
 
       },
       test() {

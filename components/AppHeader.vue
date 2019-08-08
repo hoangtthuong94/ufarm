@@ -3,10 +3,10 @@
     <div class="collapse-menu">
       <div class="text-right">
         <b-button v-b-toggle.collapse-main-top-menu class="btn-collapse">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
         </b-button>
       </div>
       <b-collapse id="collapse-main-top-menu">
@@ -62,10 +62,14 @@
       <div class="container">
         <div class="row align-items-stretch">
           <div class="col-12 col-md-3 logo">
-            <h1 class="m-0"><a title="UStore" href="/"></a></h1>
+            <h1 class="m-0">
+              <nuxt-link :to="localePath('index')" title="UStore"></nuxt-link>
+            </h1>
           </div>
           <div class="col-12 col-md-9">
             <div class="nav-cart">
+              <nuxt-link :to="switchLocalePath('en')">English</nuxt-link>
+              <nuxt-link :to="switchLocalePath('vi')">Vietnam</nuxt-link>
               <router-link to="login" class="login">Login |</router-link>
               <div class="my-cart">
                 <i class="fas fa-shopping-basket"></i>
@@ -79,10 +83,13 @@
                     <a href="" class="btn btn-black">Check out</a>
                   </div>
                 </div>-->
+                <div v-for="myProduct in cart">
+                  {{myProduct.id}}
+                </div>
               </div>
             </div>
             <ul class="main-top-menu hide-md">
-              <li class="menu-item"><a href=""><span>HOME</span></a></li>
+              <li class="menu-item"><a href=""><span>{{ $t('questions') }}</span></a></li>
               <li class="menu-item"><a href=""><span>SHOP</span></a></li>
               <li class="menu-item"><a href=""><span>BLOG</span></a></li>
               <li class="menu-item"><a href=""><span>CART</span></a></li>
@@ -95,3 +102,16 @@
     </div>
   </header>
 </template>
+<script>
+  import {mapGetters} from 'vuex';
+
+  export default {
+    name: 'Header',
+    head () {
+      return { title: this.$t('questions') }
+    },
+    computed: mapGetters({
+      cart: 'cart/get'
+    }),
+  }
+</script>

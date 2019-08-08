@@ -33,7 +33,7 @@ h2 {
   font-size: 28px;
 }
 
-h5{
+h5 {
   font-size: 17px;
 }
 
@@ -51,6 +51,10 @@ h5{
   text-shadow: none;
   font-size: 14px;
 
+  &:disabled {
+    cursor: not-allowed;
+  }
+
   &-pink-gray {
     color: $white;
     background-color: $pink-gray;
@@ -63,7 +67,7 @@ h5{
     }
   }
 
-  &-warning{
+  &-warning {
     color: $white;
     background-color: $yellow;
     border-color: $yellow;

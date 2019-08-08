@@ -24,12 +24,14 @@ export default {
         rel: 'stylesheet',
         href: 'https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css'
       },
+      {rel: 'stylesheet', href: 'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/css/select2.min.css'},
     ],
     script: [
       {src: 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'},
       {src: 'https://maps.googleapis.com/maps/api/js?key=AIzaSyD-018gW0jxNfVDWTpLjXBj_UcfCrnbiDs'},
       {src: 'https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js'},
-      {src: 'https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js'}
+      {src: 'https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js'},
+      {src: 'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/js/select2.min.js'},
     ],
   },
   /*
@@ -46,7 +48,8 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    // { src: '~/node_modules/owl.carousel2/dist/owl.carousel.min.js', ssr: false }
+    {src: '~plugins/i18n.js'},
+    {src: '~/plugins/axios.service.js'},
   ],
   /*
   ** Nuxt.js modules
@@ -54,11 +57,37 @@ export default {
   modules: [
     // Doc: https://bootstrap-vue.js.org/docs/
     'bootstrap-vue/nuxt',
+    [
+      'nuxt-i18n',
+      {
+        locales: [
+          {
+            code: 'en',
+            iso: 'en-US'
+          }, {
+            code: 'vi',
+            iso: 'vi-VN'
+          }
+        ],
+        defaultLocale: 'vi',
+        vueI18n: {
+          fallbackLocale: 'vi',
+          messages: {
+            en: require('./locales/en.json'),
+            vi: require('./locales/vi.json')
+          }
+        }
+      },
+    ],
+    [
+      '@nuxtjs/axios',
+      {
+        baseURL: 'https://testing-api.biz5s.com'
+      }
+    ]
   ],
   /*
   ** Build configuration
   */
-  // build: {
-  //   vendor: ['owl.carousel2']
-  // }
+  build: {},
 }

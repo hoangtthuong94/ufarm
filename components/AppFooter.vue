@@ -73,7 +73,6 @@
       }
     },
     mounted: function () {
-      console.log('map: ', google.maps);
       let positionStore = {lat: 10.774008, lng: 106.671531};
 
       let map = new google.maps.Map(document.getElementById('map'), {

@@ -37,7 +37,7 @@
     props: {
       pattern: {
         type: String,
-        default: ''
+        default: null
       },
       readonly: {
         type: Boolean
